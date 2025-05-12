@@ -2,7 +2,6 @@ const http=require('http');
 function requestListener(req,res)
 {
   console.log(req);
-  process.exit();//stops  event loop
  
 
 }
