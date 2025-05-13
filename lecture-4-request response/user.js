@@ -1,4 +1,5 @@
 const http=require('http');
+const fs=require('fs');
 function requestListener(req,res)
 {
   console.log(req.url,req.method,req.headers);
@@ -7,10 +8,11 @@ function requestListener(req,res)
     res.setHeader('Content-Type','text/html');
   res.write('<html>');
    res.write(' <head><title>Document</title></head> ')
-   res.write('<body> <h1>welcome to Your Details:</h1> ')
+   res.write('<body> <h1>Enter your Your Details:</h1> ')
+   res.write('<form action="/submit-details" method="POST"')
    res.write('<form>');
   
-  res.write('<input type="text" name="username" placeholder="Enter your name">')
+  res.write('<input type="text" name="username" placeholder="Enter your name"><br>')
 
   res.write('<label for="male">male</label>')
   res.write('<input type="radio" name="gender" id="male" value="male">')
@@ -27,6 +29,15 @@ function requestListener(req,res)
 
 
   }
+  else if(req.url.toLowerCase()==='/submit-details'&& req.method=="POST")
+  {
+    fs.writeFileSync('user.txt','Pratiush pathak')
+    res.statusCode=302;//code for changimg location
+    res.setHeader('Location','/');
+  }
+
+
+
   else
   {
     res.setHeader('Content-Type','text/html');
