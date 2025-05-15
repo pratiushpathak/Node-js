@@ -41,8 +41,17 @@ function requestListener(req,res)
     req.on('end',()=>{
       const fullBody=Buffer.concat(body).toString()
       console.log(fullBody);
+      //output username=Pratiush+Pathak&gender=male
+      const bodyObject={};
+     const params=new URLSearchParams(fullBody)
+     for(const[key,val] of params.entries())
+     {
+       bodyObject[key]=val;
+     }
+     console.log(bodyObject);
+    //output { username: 'Pratiush Pathak', gender: 'male' }
     })
-    //ends here
+
 
     fs.writeFileSync('user.txt','Pratiush pathak')
     res.statusCode=302;//code for changimg location
