@@ -1,6 +1,6 @@
-const http=require('http');
+
 const fs=require('fs');
-function requestListener(req,res)
+const userrequestHandler=(req,res)=>
 {
   console.log(req.url,req.method);
   if(req.url==='/')
@@ -52,10 +52,11 @@ function requestListener(req,res)
     const bodyObject=Object.fromEntries(params);
     console.log(bodyObject);
     //output { username: 'Pratiush Pathak', gender: 'male' }
+    fs.writeFileSync('user.txt',JSON.stringify(bodyObject))
     })
 
 
-    fs.writeFileSync('user.txt','Pratiush pathak')
+    
     res.statusCode=302;//code for changimg location
     res.setHeader('Location','/');
   }
@@ -77,9 +78,7 @@ function requestListener(req,res)
  
 
 }
-const server=http.createServer(requestListener);
+module.exports=userrequestHandler;
 
-const port=3002;
-server.listen(port,()=>{
-  console.log(`Server running on address http://localhost:${port}`)
-});
+
+
