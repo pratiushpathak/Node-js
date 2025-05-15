@@ -15,7 +15,7 @@ const requestListener=(req,res)=>
 
   
    else if (req.url === '/calculator') {
-  res.writeHead(200, { 'Content-Type': 'text/html' });
+  
   res.write(`
 
     <!DOCTYPE html>
