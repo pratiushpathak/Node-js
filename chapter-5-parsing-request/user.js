@@ -2,7 +2,7 @@ const http=require('http');
 const fs=require('fs');
 function requestListener(req,res)
 {
-  console.log(req.url,req.method,req.headers);
+  console.log(req.url,req.method);
   if(req.url==='/')
   {
     res.setHeader('Content-Type','text/html');
@@ -31,8 +31,18 @@ function requestListener(req,res)
   }
   else if(req.url.toLowerCase()==='/submit-details'&& req.method=="POST")
   {
+    const body=[];
 
-   
+    //buffering of chunks
+    req.on('data',(chunk)=>{
+     console.log(chunk);
+     body.push(chunk);
+    });
+    req.on('end',()=>{
+      const fullBody=Buffer.concat(body).toString()
+      console.log(fullBody);
+    })
+    //ends here
 
     fs.writeFileSync('user.txt','Pratiush pathak')
     res.statusCode=302;//code for changimg location
