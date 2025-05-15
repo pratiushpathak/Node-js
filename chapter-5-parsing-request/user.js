@@ -42,13 +42,15 @@ function requestListener(req,res)
       const fullBody=Buffer.concat(body).toString()
       console.log(fullBody);
       //output username=Pratiush+Pathak&gender=male
-      const bodyObject={};
+      // const bodyObject={};
      const params=new URLSearchParams(fullBody)
-     for(const[key,val] of params.entries())
-     {
-       bodyObject[key]=val;
-     }
-     console.log(bodyObject);
+    //  for(const[key,val] of params.entries())
+    //  {
+    //    bodyObject[key]=val;
+    //  }
+    //  console.log(bodyObject);
+    const bodyObject=Object.fromEntries(params);
+    console.log(bodyObject);
     //output { username: 'Pratiush Pathak', gender: 'male' }
     })
 
