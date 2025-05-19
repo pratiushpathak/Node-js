@@ -13,7 +13,15 @@ const app=express();
 
 
 const server=http.createServer(app);
+app.use((req,res,next)=>{
+  console.log("came in first middle ware",req.url,req.method);
+  next();
 
+});
+app.use((req,res,next)=>{
+  console.log("came in second middle ware",req.url,req.method);
+
+});
 
 
 
