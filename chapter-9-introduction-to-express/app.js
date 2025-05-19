@@ -7,16 +7,33 @@ const app=express();
 
 
 
-app.use((req,res,next)=>{
+app.get("/",(req,res,next)=>{
   console.log("came in first middle ware",req.url,req.method);
+   //res.send("<p>came from first middleware</p")
   next();
 
 });
-app.use((req,res,next)=>{
+
+app.post("/submit-details",(req,res,next)=>{
   console.log("came in second middle ware",req.url,req.method);
   res.send("<p>Welcome to middleware</p")
 
 });
+
+
+
+app.use("/",(req,res,next)=>{
+  console.log("came in another middle ware",req.url,req.method);
+    res.send("<p>came in another middleware</p")
+ 
+
+});
+
+
+
+
+
+
 
 
 
