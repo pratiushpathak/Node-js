@@ -1,9 +1,4 @@
 
-//const testingSyntax=require('./syntax')
-//const testingSyntax=require('./runtime')
-const http=require('http');
-//const runtime = require('./runtime');
-const requestHandler=require('./user')
 
 
 //external modules
@@ -12,7 +7,6 @@ const app=express();
 
 
 
-const server=http.createServer(app);
 app.use((req,res,next)=>{
   console.log("came in first middle ware",req.url,req.method);
   next();
@@ -20,13 +14,14 @@ app.use((req,res,next)=>{
 });
 app.use((req,res,next)=>{
   console.log("came in second middle ware",req.url,req.method);
+  res.send("<p>Welcome to middleware</p")
 
 });
 
 
 
 const port=3002;
-server.listen(port,()=>{
+app.listen(port,()=>{
 
 console.log(`Server running on address http://localhost:${port}`)
 })
