@@ -1,12 +1,13 @@
 const path =require('path');
 const express=require('express');
 const contactroute=express.Router();
+const rootDir=require("../utils/pathutils");
 
 
 
 contactroute.get("/contact-us",(req,res,next)=>{
 console.log("handling for/contact-us get",req.body,req.url,req.method)
-res.sendFile(path.join(__dirname,"../","views","form.html"))
+res.sendFile(path.join(rootDir,"views","form.html"))
 
 })
 
@@ -26,7 +27,7 @@ contactroute.post("/contact-us",(req,res,next)=>{
 
 contactroute.post("/contact-us",(req,res,next)=>{
   console.log("handling for/contact-us for POST",req.url,req.method,req.body)
-res.sendFile(path.join(__dirname,"../","views","thanks.html"))
+res.sendFile(path.join(rootDir,"views","thanks.html"))
   
 })
 
