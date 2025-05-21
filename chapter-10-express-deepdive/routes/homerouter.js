@@ -7,8 +7,8 @@ const homeRouter=express.Router();
 
 homeRouter.get("/",(req,res,next)=>{
 console.log("handling for/ get",req.url,req.method)
-res.send(`<h1>welcome to backend</h1>`)
-next();
+res.sendFile(path.join(__dirname,"../","views","welcome.html"))
+//next();
 })
 module.exports=homeRouter
 
